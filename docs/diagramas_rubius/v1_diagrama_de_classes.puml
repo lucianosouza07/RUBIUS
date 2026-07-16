@@ -1,0 +1,62 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "Models" {
+  class User {
+    + id: int
+    + email: str
+    + password_hash: str
+  }
+}
+
+package "Schemas" {
+  class UserCreate {
+    + email: EmailStr
+    + password: str
+  }
+  
+  class UserLogin {
+    + email: EmailStr
+    + password_hash: str
+  }
+  
+  class ChatRequest {
+    + message: str
+  }
+}
+
+package "Services" {
+  class AIService {
+    + ask_rubius_ai(prompt: str, context_data: str): str
+  }
+  
+  class WorldCupAPI {
+    + get_teams(): dict
+    + get_groups(): dict
+    + get_games(): dict
+  }
+}
+
+package "Routes" {
+  class AuthRoutes {
+    + register(user: UserCreate)
+    + login(user: UserLogin)
+  }
+  
+  class WorldCupRoutes {
+    + get_teams()
+    + get_groups()
+    + get_games()
+    + chat_with_rubius(request: ChatRequest)
+  }
+}
+
+AuthRoutes ..> UserCreate : uses
+AuthRoutes ..> UserLogin : uses
+AuthRoutes --> User : manages
+
+WorldCupRoutes ..> ChatRequest : uses
+WorldCupRoutes --> WorldCupAPI : calls
+WorldCupRoutes --> AIService : calls
+
+@enduml

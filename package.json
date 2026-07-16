@@ -1,0 +1,14 @@
+{
+  "name": "001msar-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install",
+    "start:backend": "cd backend && uv run --env-file .env uvicorn main:app --reload --port 8000",
+    "start:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

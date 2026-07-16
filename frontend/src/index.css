@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-surface: var(--surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-border: var(--border);
+  --color-outline: var(--outline);
+  --color-error: var(--error);
+
+  /* Aliases para retrocompatibilidade com os mockups */
+  --color-surface-light: var(--surface);
+  --color-surface-dark: var(--surface);
+  --color-surface-variant-light: var(--surface-variant);
+  --color-surface-variant-dark: var(--surface-variant);
+  --color-text-light: var(--on-surface);
+  --color-text-dark: var(--on-surface);
+  --color-text-muted: var(--on-surface-variant);
+  --color-text-muted-light: var(--on-surface-variant);
+  --color-text-muted-dark: var(--on-surface-variant);
+  --color-text-primary: var(--on-surface);
+  --color-border-light: var(--border);
+  --color-border-dark: var(--border);
+  --color-on-primary: #ffffff;
+
+  --radius-DEFAULT: 8px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-sidebar-width: 260px;
+  --spacing-max-content-width: 960px;
+  --spacing-gutter: 16px;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-stat: "JetBrains Mono", monospace;
+
+  --font-headline-lg: "Space Grotesk", sans-serif;
+  --font-headline-md: "Space Grotesk", sans-serif;
+  --font-headline-lg-mobile: "Space Grotesk", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-label-md: "Inter", sans-serif;
+  --font-label-sm: "Inter", sans-serif;
+  --font-stat-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  :root {
+    --primary: #00685f;
+    --primary-hover: #0F766E;
+    --secondary: #855300;
+    --tertiary: #006b2c;
+    --surface: #FCFCF9;
+    --surface-variant: #F4F4F0;
+    --on-surface: #100E12;
+    --on-surface-variant: #6C7278;
+    --border: #E5E5E0;
+    --outline: #E5E5E0;
+    --error: #DC2626;
+  }
+
+  .dark {
+    --primary: #0D9488;
+    --primary-hover: #0F766E;
+    --secondary: #F59E0B;
+    --tertiary: #16A34A;
+    --surface: #100E12;
+    --surface-variant: #1A181D;
+    --on-surface: #FCFCF9;
+    --on-surface-variant: #A8A29E;
+    --border: #2A282D;
+    --outline: #2A282D;
+  }
+
+  body {
+    @apply bg-surface text-text-primary font-body transition-colors duration-200;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}

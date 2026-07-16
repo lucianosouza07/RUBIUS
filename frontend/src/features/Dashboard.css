@@ -1,0 +1,9 @@
+body {
+	display: flex;
+}
+
+.group-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}

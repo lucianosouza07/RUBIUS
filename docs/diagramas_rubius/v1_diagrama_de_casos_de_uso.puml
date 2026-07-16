@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Usuário" as User
+actor "Sistema" as AI
+actor "API" as API
+
+rectangle "RUBIUS" {
+  usecase "Cadastrar Conta" as UC1
+  usecase "Fazer Login" as UC2
+  usecase "Acessar Dashboard" as UC3
+  usecase "Visualizar Times da Copa" as UC4
+  usecase "Visualizar Grupos da Copa" as UC5
+  usecase "Visualizar Jogos da Copa" as UC6
+  usecase "Conversar com Rubius AI" as UC7
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+
+UC4 <-- API : Fornece Dados
+UC5 <-- API : Fornece Dados
+UC6 <-- API : Fornece Dados
+
+UC7 <-- AI : Responde com Contexto da Copa
+
+@enduml

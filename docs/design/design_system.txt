@@ -1,0 +1,362 @@
+================================================================================
+          RUBIUS WORLD CUP INTELLIGENCE - DOCUMENTO DE DESIGN SYSTEM
+================================================================================
+Documento Técnico de Referência da Engenharia de Software
+Versão: 1.0.0
+Data: 14 de Julho de 2026
+Status: Definitivo
+
+--------------------------------------------------------------------------------
+1. INTRODUÇÃO E PRINCÍPIOS DE DESIGN
+--------------------------------------------------------------------------------
+
+O Rubius World Cup Intelligence é um assistente de Inteligência Artificial de
+alta performance voltado para a Copa do Mundo. Diferente de aplicações esportivas
+comuns que poluem o usuário com excesso de propagandas e layouts carregados, o 
+Rubius adota uma identidade visual corporativa, moderna e essencialmente
+minimalista.
+
+Este Design System visa garantir a consistência visual e de usabilidade entre
+todas as interfaces do projeto (mobile, tablet e desktop), servindo como guia
+único de verdade para engenheiros de software, designers e analistas de produto.
+
+Os princípios que guiam o Rubius são:
+- Autoridade Calma: O ambiente deve transmitir segurança, precisão técnica e 
+  foco na análise dos dados, assemelhando-se a um terminal de inteligência ou a 
+  um jornal de dados premium (sensação de "papel digital").
+- Clareza e Velocidade: Interfaces limpas que priorizam a arquitetura de
+  informação, minimizando elementos puramente decorativos.
+- Rigor Técnico (Sem Viés): Visual objetivo e direto, sem o uso de esquemas
+  de cores excessivamente vibrantes ou baseados em rivalidades de times, exceto
+  nos momentos específicos previstos no design.
+- Acessibilidade Nativa: Garantia de contraste de nível WCAG AA para todos
+  os textos e elementos interativos.
+
+--------------------------------------------------------------------------------
+2. DESIGN TOKENS (FUNDAMENTOS)
+--------------------------------------------------------------------------------
+
+Os Design Tokens são as decisões de design mais fundamentais codificadas em
+variáveis de estilo, garantindo consistência multiplataforma.
+
+2.1. Paleta de Cores (Cores e Acessibilidade)
+O Rubius utiliza uma paleta de alto contraste com tonalidades suaves e papéis
+neutros texturizados em contraste com realces analíticos.
+
+  A. Cores Primárias (Interação & Inteligência)
+     - Primary: #00685f (Verde Teal Escuro - Ações primárias e marca)
+     - Primary Hover: #0F766E (Teal de destaque para estados de hover)
+     - Primary Container: #008378 (Container primário de destaque médio)
+     - On-Primary: #ffffff (Texto sobre fundo primário)
+     - On-Primary Container: #f4fffc (Texto sobre fundo de container primário)
+     - Primary Fixed: #89f5e7 (Versão de contraste fixo brilhante)
+     - Primary Fixed Dim: #6bd8cb (Versão suavizada do primário fixo)
+     - On-Primary Fixed: #00201d (Texto sobre fundo primário fixo)
+     - On-Primary Fixed Variant: #005049 (Texto variante sobre primário fixo)
+
+  B. Cores Secundárias (Momentos Especiais "Cup Moments")
+     - Secondary: #855300 (Âmbar/Dourado - Reservado estritamente para grandes
+       conquistas, campeões mundiais, troféus e momentos icônicos da Copa)
+     - Secondary Container: #fea619 (Container de destaque dourado)
+     - On-Secondary: #ffffff (Texto sobre fundo secundário)
+     - On-Secondary-Container: #684000 (Texto escuro sobre container secundário)
+     - Secondary Fixed: #ffddb8 (Tonalidade fixa de fundo secundário)
+     - Secondary Fixed Dim: #ffb95f (Tonalidade fixa suavizada)
+     - On-Secondary Fixed: #2a1700 (Texto sobre secundário fixo)
+     - On-Secondary Fixed Variant: #653e00 (Texto variante sobre secundário fixo)
+
+  C. Cores Terciárias e Status (Eventos e Alertas)
+     - Tertiary (Pitch Green): #006b2c (Verde Campo - Exclusivo para eventos
+       positivos em tempo real, como gols, classificações confirmadas e "AO VIVO")
+     - Tertiary Container: #00873a (Container verde para dados de sucesso)
+     - On-Tertiary: #ffffff (Texto sobre fundo terciário)
+     - On-Tertiary Container: #f7fff2 (Texto claro sobre container terciário)
+     - Tertiary Fixed: #7ffc97 (Tonalidade fixa de fundo verde)
+     - Tertiary Fixed Dim: #62df7d (Tonalidade fixa suavizada verde)
+     - On-Tertiary Fixed: #002109
+     - On-Tertiary Fixed Variant: #005320
+     - Error: #DC2626 (Vermelho - Erros, cancelamentos ou cartões vermelhos)
+     - Error Container: #ffdad6 (Container de erro)
+     - On-Error: #ffffff (Texto sobre erro)
+     - On-Error-Container: #93000a (Texto sobre container de erro)
+     - Info: #0EA5E9 (Azul - Informações gerais neutras)
+
+  D. Neutras e Superfícies (Papel Digital)
+     - Background: #f9f9f6 (Off-white acinzentado, reduz fadiga visual)
+     - On-Background: #1a1c1b (Texto principal de leitura)
+     - Surface: #f9f9f6 (Cor de base para cards e layouts gerais)
+     - Surface Dim: #dadad7 (Superfície levemente rebaixada)
+     - Surface Bright: #f9f9f6
+     - Surface Container Lowest: #ffffff (Superfície de maior destaque e pureza)
+     - Surface Container Low: #f4f4f1 (Contêineres de segundo nível)
+     - Surface Container: #eeeeeb (Contêineres padrão de segmentação)
+     - Surface Container High: #e8e8e5 (Bordas e divisores integrados)
+     - Surface Container Highest: #e2e3e0 (Destaques de bordas ativas)
+     - On-Surface: #1a1c1b (Texto geral sobre superfícies)
+     - On-Surface Variant: #3d4947 (Texto secundário e labels secundários)
+     - Outline: #6d7a77 (Bordas de alto contraste)
+     - Outline Variant: #bcc9c6 (Bordas secundárias de baixo contraste)
+     - Border: #E5E5E0 (Linhas divisórias padrões)
+     - Inverse Surface: #2f312f (Superfícies invertidas, ex: modo escuro forçado)
+     - Inverse On-Surface: #f1f1ee (Texto sobre superfície invertida)
+     - Inverse Primary: #6bd8cb
+     - Surface Tint: #006a61
+
+2.2. Tipografia
+A tipografia é estruturada em uma hierarquia de três famílias tipográficas com
+propósitos distintos de legibilidade e estilo:
+
+  1. Space Grotesk: Para manchetes, títulos (Headlines) e navegação principal.
+     Traz um caráter geométrico, moderno e expressivo.
+  2. Inter: Para corpo de texto, respostas da IA e elementos gerais de interface.
+     Oferece alta legibilidade em blocos densos de conversação.
+  3. JetBrains Mono: Para dados estatísticos, placares, tempos de jogo e metadados.
+     Garante alinhamento tabular perfeito devido à sua natureza monoespaçada.
+
+Tabela de Escala Tipográfica:
++---------------------+-------------------+------------+-------------+--------------+------------------+
+| Token               | Família           | Tamanho    | Peso (Font) | Line Height  | Letter Spacing   |
++---------------------+-------------------+------------+-------------+--------------+------------------+
+| headline-lg         | Space Grotesk     | 32px       | Bold (700)  | 1.15         | -0.02em          |
+| headline-md         | Space Grotesk     | 22px       | Semibold(600| 1.25         | -0.01em          |
+| body-lg             | Inter             | 18px       | Regular(400)| 1.6          | Normal           |
+| body-md             | Inter             | 16px       | Regular(400)| 1.55         | Normal           |
+| body-sm             | Inter             | 14px       | Regular(400)| 1.5          | Normal           |
+| label-md            | Inter             | 13px       | Medium (500)| 1.3          | 0.02em           |
+| label-sm            | Inter             | 11px       | Semibold(600| 1.2          | 0.08em (Uppercase|
+| stat-mono           | JetBrains Mono    | 14px       | Medium (500)| 1.4          | -0.01em          |
+| headline-lg-mobile  | Space Grotesk     | 26px       | Bold (700)  | 1.2          | Normal           |
++---------------------+-------------------+------------+-------------+--------------+------------------+
+
+*Regra de Engenharia:* Não utilizar mais de duas famílias tipográficas no
+mesmo container. Todos os textos do tipo label-sm devem ser transformados
+automaticamente para caixa alta (text-transform: uppercase).
+
+2.3. Espaçamento e Grid (Unidade Base 8px)
+Todo o espaçamento interno (padding), margem externa (margin) e posicionamento
+segue a escala de múltiplos de 8px (exceto xs de 4px):
+- xs: 4px
+- sm: 8px
+- md: 16px
+- lg: 24px
+- xl: 32px
+- 2xl: 48px
+- 3xl: 64px
+
+Especificações de Layout:
+- Sidebar Width: 260px (largura fixa em telas grandes)
+- Max Content Width: 960px (limite para visualização das conversas da IA)
+- Gutter: 16px (espaço padrão entre grades)
+
+2.4. Arredondamentos (Border Radius)
+Os cantos arredondados seguem a filosofia de "Geometria Contextual":
+- rounded-sm (4px): Usado para elements técnicos, badges de estatísticas e inputs de filtro.
+- rounded-DEFAULT (8px): Usado para botões gerais, cards comuns e itens de menu.
+- rounded-md (12px): Usado para cards de entidade, modais e blocos de conteúdo.
+- rounded-lg (16px): Usado para painéis de destaque e caixas de chat secundárias.
+- rounded-xl (24px): Usado especificamente para a barra de input do chat ("Ask Input").
+- rounded-full (9999px): Usado para avatares de seleções, botões de ação circulares e tags (chips).
+
+2.5. Elevação, Profundidade e Camadas (Flat-Layered)
+O Rubius evita sombras realistas em favor de uma profundidade baseada em
+linhas finas de 1px e variações de cor de fundo (Flat-Layered Design).
+- Camada L0 (Base): Cor de fundo principal (#f9f9f6).
+- Camada L1 (Conteúdo): Painéis e cards destacados com borda de 1px (#E5E5E0) ou fundo (#eeeeeb).
+- Camada L2 (Interação/Modais): Hover de itens selecionados e modais suspensos, delimitados por bordas Outline.
+
+--------------------------------------------------------------------------------
+3. BIBLIOTECA DE COMPONENTES PADRONIZADOS
+--------------------------------------------------------------------------------
+
+3.1. Botões (Buttons)
+- Botão Primário:
+  Fundo Primary (#00685f), texto On-Primary (#ffffff), cantos rounded-DEFAULT (8px).
+  Ao passar o mouse (hover), transiciona suavemente para Primary Hover (#0F766E).
+- Botão Secundário / Ghost:
+  Fundo transparente, borda de 1px em Border (#E5E5E0), texto On-Surface Variant (#3d4947).
+  Ao passar o mouse, fundo muda para Surface Container Low (#f4f4f1).
+
+3.2. Campo de Entrada Principal (Ask Input)
+O principal componente de interação humana na ferramenta.
+- Altura mínima de 64px para garantir conforto.
+- Cantos rounded-xl (24px) para se destacar das tabelas e estatísticas.
+- Borda de 1px em Border (#E5E5E0).
+- Micro-interação ativa: quando a IA estiver executando uma consulta ou gerando
+  uma resposta, a borda do input deve realizar uma animação de pulso contínuo na
+  cor Primary (#00685f) com opacidade oscilando de 0% a 20%.
+
+3.3. Smart Prompt Chips
+Pílulas de atalho para perguntas rápidas recomendadas pela IA.
+- Cantos rounded-full (pílula).
+- Fundo Surface Container (#eeeeeb), texto label-md (#3d4947).
+- Borda inexistente. Transiciona para fundo Primary Container com texto On-Primary no hover.
+
+3.4. Cards de Entidade (Entity Cards)
+Utilizados para representar contextos de seleções nacionais, jogadores ou tópicos.
+- Cantos arredondados rounded-md (12px).
+- Borda fina de 1px (#E5E5E0) que muda para a cor Primary (#00685f) ao passar o mouse.
+- Sem sombras.
+
+3.5. Emblemas de Estatísticas (Stat Badges)
+Destinados a exibir números, placares, minutos ou valores monetários.
+- Tipografia obrigatoriamente configurada com stat-mono (JetBrains Mono).
+- Cantos retos com rounded-sm (4px) para conferir aspecto de dados de precisão.
+- Fundo rebaixado Surface Container Highest (#e2e3e0) com texto On-Surface (#1a1c1b).
+
+3.6. Indicador de Transmissão ao Vivo (Live Indicator)
+Indica que uma partida ou dados estão sendo sincronizados ao vivo.
+- Pequeno círculo de diâmetro 8px com cor Terciária (#006b2c).
+- Animação infinita de pulso (fade in/out com escala de 1.0 a 1.4).
+- Acompanhado do texto "AO VIVO" formatado sob o token label-sm.
+
+--------------------------------------------------------------------------------
+4. DIRETRIZES DE IMPLEMENTAÇÃO E ENGENHARIA DE SOFTWARE
+--------------------------------------------------------------------------------
+
+4.1. Estrutura de Variáveis CSS (Custom Properties)
+Para implementar de forma consistente este design system no front-end em React,
+a declaração de variáveis globais deve residir no arquivo de estilos globais:
+
+```css
+:root {
+  /* Cores Primárias */
+  --color-primary: #00685f;
+  --color-primary-hover: #0f766e;
+  --color-primary-container: #008378;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #f4fffc;
+
+  /* Cores Secundárias (Cup Moments) */
+  --color-secondary: #855300;
+  --color-secondary-container: #fea619;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #684000;
+
+  /* Cores Terciárias e Status */
+  --color-tertiary: #006b2c;
+  --color-tertiary-container: #00873a;
+  --color-on-tertiary: #ffffff;
+  --color-error: #dc2626;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-info: #0ea5e9;
+
+  /* Superfícies e Bordas (Papel Digital) */
+  --color-background: #f9f9f6;
+  --color-surface: #f9f9f6;
+  --color-surface-container: #eeeeeb;
+  --color-surface-container-low: #f4f4f1;
+  --color-surface-container-high: #e8e8e5;
+  --color-surface-container-highest: #e2e3e0;
+  --color-on-surface: #1a1c1b;
+  --color-on-surface-variant: #3d4947;
+  --color-border: #e5e5e0;
+
+  /* Fontes */
+  --font-headlines: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-default: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Espaçamento */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+```
+
+4.2. Padrão de Codificação e Classes CSS
+Recomenda-se o uso de CSS Variables nativas integradas a arquivos de estilo CSS
+modulares (CSS Modules) ou CSS puro em layouts estruturados, evitando estilos
+ad-hoc de forma a impedir a poluição do código React.
+
+Exemplo de componente em React/TypeScript com CSS modular em conformidade:
+
+```tsx
+// Exemplo de aplicação em Componente Button.tsx
+import React from 'react';
+import './Button.css';
+
+interface ButtonProps {
+  variant?: 'primary' | 'secondary';
+  children: React.ReactNode;
+}
+
+export const Button: React.FC<ButtonProps> = ({ variant = 'primary', children }) => {
+  return (
+    <button className={`btn btn--${variant}`}>
+      {children}
+    </button>
+  );
+};
+```
+
+```css
+/* Button.css */
+.btn {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-default);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-on-surface-variant);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-surface-container-low);
+}
+```
+
+4.3. Regras de Breakpoints para Adaptabilidade Responsiva
+Todos os containers devem suportar redimensionamento fluido baseado nas regras:
+- Mobile (<640px): A barra lateral (Sidebar) se contrai em um menu inferior ou
+  gaveta (drawer); margens laterais reduzem-se para 16px fixos; títulos principais
+  adotam a fonte `headline-lg-mobile`.
+- Tablet (640px a 1024px): A barra lateral recolhe-se em um modelo compacto de
+  ícones (rail de 64px) para expandir a área útil de leitura.
+- Desktop (>1024px): Visualização completa com painel lateral (260px), área de
+  conteúdo centralizada (máximo de 960px) e painéis auxiliares à direita para dados
+  estáticos rápidos.
+
+4.4. Acessibilidade (Normativa WCAG)
+- Contraste: A proporção de contraste de cores para textos normais em relação ao 
+  fundo de superfícies deve atingir o mínimo de 4.5:1. Textos grandes (headlines) 
+  devem atingir pelo menos 3:1.
+- Foco de Teclado: Todos os controles interativos devem possuir estados de :focus 
+  visíveis e de alto contraste utilizando `var(--color-primary)` in um outline
+  de pelo menos 2px.
+- Semântica: Utilização correta de tags HTML5 (<header>, <nav>, <main>, <section>, 
+  <aside>, <footer>) e inclusão de atributos ARIA sempre que elementos customizados
+  forem implementados.
+
+================================================================================
+Fim do Documento de Design System - Rubius World Cup Intelligence
+================================================================================
